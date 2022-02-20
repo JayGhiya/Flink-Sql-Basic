@@ -1,0 +1,255 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.flink.example</groupId>
+  <artifactId>flink-table-sql</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>flink-table-sql</name>
+  <url>http://maven.apache.org</url>
+  
+
+
+<properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <flink.version>1.14.2</flink.version>
+    </properties>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <includes>
+                        <include></include>
+                    </includes>
+                </configuration>
+                <!--<configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.google.code.findbugs:jsr305</exclude>
+                                    <exclude>org.sl4j.*</exclude>
+                                    <exclude>log4j.*</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>
+                                        *:*
+                                    </artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+     <repositories>
+        <repository>
+            <id>confluent</id>
+            <name>Confluent</name>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
+<dependencies>
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-streaming-java -->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java_2.12</artifactId>
+        <version>${flink.version}</version>
+            </dependency>
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>6.14.3</version>
+        <scope>test</scope>
+    </dependency>
+
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-avro-confluent-registry</artifactId>
+  <version>1.14.2</version>
+</dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-core -->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-core</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-connector-kafka_2.12</artifactId>
+        <version>${flink.version}</version>
+        <scope>provided</scope>
+    </dependency>  
+    <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-fhir -->
+<dependency>
+    <groupId>org.apache.camel</groupId>
+    <artifactId>camel-fhir</artifactId>
+    <version>3.15.0</version>
+</dependency>
+ 
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-clients -->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-clients_2.12</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.13.1</version>
+</dependency>
+
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.22</version>
+		<scope>provided</scope>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-json -->
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-json</artifactId>
+    <version>1.14.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer -->
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-avro-serializer</artifactId>
+    <version>7.0.1</version>
+</dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-sql-connector-kafka -->
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-sql-connector-kafka_2.12</artifactId>
+    <version>1.14.2</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-table-planner_2.12</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-streaming-scala_2.12</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+  <dependency>
+    
+    <groupId>flinkSchema</groupId>
+  <artifactId>avro.Flink.schema</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  <scope>system</scope>
+  <systemPath>/Users/jayghiya/Documents/codebases/flink-avro-sql/KafkaAvroProducerWithSchema/schema-proj/FlinkSchema/target/avro.Flink.schema-1.2-SNAPSHOT.jar</systemPath>
+  </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-test-utils -->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-test-utils_2.12</artifactId>
+        <version>${flink.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.12.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-metrics-dropwizard</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-table-api-java-bridge_2.12</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-table-planner_2.12</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-streaming-scala_2.12</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-avro</artifactId>
+  <version>1.14.2</version>
+  <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-schema-registry</artifactId>
+    <version>7.0.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry-client -->
+<dependency>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-schema-registry-client</artifactId>
+    <version>7.0.1</version>
+</dependency>
+
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java_2.12</artifactId>
+        <version>${flink.version}</version>
+        <scope>test</scope>
+        <classifier>tests</classifier>
+    </dependency>
+
+    <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>kafka</artifactId>
+        <version>1.16.0</version>
+        <scope>test</scope>
+    </dependency>
+
+</dependencies>
+
+</project>

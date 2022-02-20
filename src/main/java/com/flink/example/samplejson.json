@@ -1,0 +1,8 @@
+{
+    
+    "wind_velocity" : 5,
+    "wind_direction" : "NorthEast",
+    "humidity" : 25,
+    "temperature" : 35,
+    "city" : "vadodara"
+}
